@@ -1,8 +1,8 @@
 class Solution {
   public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
     record T(int pro, int cap) {}
-    Queue<T> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a.cap, b.cap));
-    Queue<T> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.pro, a.pro));
+    Queue<T> minHeap = new PriorityQueue<>(Comparator.comparing(T::cap));
+    Queue<T> maxHeap = new PriorityQueue<>(Comparator.comparing(T::pro, Comparator.reverseOrder()));
 
     for (int i = 0; i < capital.length; ++i)
       minHeap.offer(new T(profits[i], capital[i]));
